@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Curso</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="logo"></div>
+	<div class='row'>
+		<nav id='navigation'>
+			<ul>
+				<li><%=link_to 'Inicio', root_path %></li>
+				<li><%=link_to 'Acerca', root_path %></li>
+				<li><%=link_to 'Contactos', root_path%></li>
+		<% if user_signed_in? %>
+      	logueado como <strong><%= current_user.email%></strong>>
+      			<li><%=link_to 'editar_perfil',edit_user_registration_path %></li>
+      			<li><%=link_to 'logout',destroy_user_user_session_path, method: :delete %></li>
+      	<%else %>
+      	      	<li><%=link_to 'Sign in',new_user_registration_path %></li>
+      			<li><%=link_to 'Login',new_user_session_path %></li>
+      	<%end %>
+			</ul>
+		</nav>
+	</div>
+
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <div class="row"><%= yield %></div>
+
+</body>
+</html>
